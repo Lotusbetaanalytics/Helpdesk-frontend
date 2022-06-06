@@ -1,0 +1,23 @@
+.userLogin {
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.userLoginBody {
+    min-height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userLoginBody .smallDiv {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.userLoginBody small {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.77);
+}

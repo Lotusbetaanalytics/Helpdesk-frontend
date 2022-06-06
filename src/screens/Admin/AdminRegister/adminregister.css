@@ -1,0 +1,11 @@
+.adminRegister {
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.adminRegisterBody {
+    min-height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

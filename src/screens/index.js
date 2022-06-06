@@ -1,0 +1,9 @@
+export { default as Home } from "./Home";
+export { default as UserRegister } from "./User/UserRegister";
+export { default as UserDashboard } from "./User/Userdashboard";
+export { default as UserLogin } from "./User/UserLogin";
+export { default as CreateTicket } from "./User/CreateTicket";
+export { default as Issue } from "./User/Issue";
+export { default as AdminRegister } from "./Admin/AdminRegister";
+export { default as AdminDashboard } from "./Admin/AdminDashboard";
+export { default as AdminLogin } from "./Admin/AdminLogin";

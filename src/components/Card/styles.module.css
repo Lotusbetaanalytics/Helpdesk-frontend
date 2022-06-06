@@ -1,0 +1,46 @@
+.card  {
+    text-decoration: none;
+    font-family: 'Poppins';
+    width: 215px;
+    height: 239px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.card  > div {
+    max-width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.card p {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 48px;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+.card  small {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+@media screen and (max-width: 700px) {
+    .card {
+        flex: 47%;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .card {
+        max-width: 216px;
+        flex: 80%;
+    }
+
+} 

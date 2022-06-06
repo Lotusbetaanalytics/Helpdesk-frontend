@@ -1,0 +1,20 @@
+.linkcard  {
+    font-family: 'Poppins';
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
+
+link.card p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #565456;
+}
+
+
+@media screen and (max-width: 550px) {
+    .linkcard {
+        padding-left: 10%;
+    }
+
+}  

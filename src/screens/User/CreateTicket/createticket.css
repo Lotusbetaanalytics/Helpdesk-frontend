@@ -1,0 +1,17 @@
+.linkCardWrapper {
+    max-width: 600px;
+    margin-top: 10px;
+    margin-left: 14em;
+    padding: 0 30px;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 40px;
+}
+
+
+@media screen and (max-width: 550px) {
+    .linkCardWrapper {
+        margin-left: 10em;
+    }
+
+}

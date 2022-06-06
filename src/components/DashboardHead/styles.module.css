@@ -1,0 +1,28 @@
+.dashboardhead {
+    font-family: 'Poppins';
+    margin-left: 13em;
+    padding: 40px 50px 20px;
+}
+
+.dashboardhead header {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.dashboardhead > div {
+    color: #565456;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+.dashboardhead > div > span {
+    
+}
+
+@media screen and (max-width: 550px) {
+    .dashboardhead {
+        margin-left: 12em;
+        padding: 40px 0;
+    }
+}

@@ -1,0 +1,50 @@
+.sidebar {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 13em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0px 4px 20px #E5E5E5;
+}
+
+.sidebar main {
+    color: #565456;
+    margin-top: 8em;
+    font-weight: 400;
+}
+
+.sidebar main ul li {
+    font-size: 13px;
+    margin-bottom: 35px;
+    text-transform: capitalize;
+    display: flex;
+    place-items:center ;
+}
+
+.sidebar p {
+    display: flex;
+    place-items: center;
+}
+
+.sidebar span {
+    margin-left: 10px;
+}
+
+.sidebar svg {
+    font-size: 25px;
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .sidebar {
+        width: 10em;
+    }
+
+    .sidebar main{
+        padding-left: 0px;
+    }
+
+}

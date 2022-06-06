@@ -1,0 +1,15 @@
+.cardWrapper {
+    margin-left: 14em;
+    padding: 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+
+@media screen and (max-width: 550px) {
+    .cardWrapper {
+        margin-left: 10em;
+    }
+
+}

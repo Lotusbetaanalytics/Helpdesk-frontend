@@ -1,0 +1,25 @@
+.logo {
+    box-sizing: border-box;
+    background-color: #9A198C;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    padding: 16px 25px;  
+}
+
+.logo .logocontent {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 45px;
+    margin-left: 15px;
+}
+
+/* @media screen and (max-width:550px) {
+    .logo .logocontent {
+        font-size: 15px;
+    }
+} */
+
