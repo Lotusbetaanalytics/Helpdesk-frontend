@@ -2,7 +2,7 @@
     text-decoration: none;
     font-family: 'Poppins';
     width: 215px;
-    height: 239px;
+    height: 225px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,12 +18,12 @@
 .card p {
     color: #fff;
     margin-bottom: 25px;
-    font-size: 48px;
-    font-weight: 500;
+    font-size: 48px !important;
+    font-weight: 500 !important;
     padding: 0 10px;
 }
 
-.card  small {
+.card small {
     color: #fff;
     font-size: 14px;
     font-weight: 500;

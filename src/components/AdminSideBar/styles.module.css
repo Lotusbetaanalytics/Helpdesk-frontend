@@ -1,4 +1,4 @@
-.sidebar {
+.adminSidebar {
     font-family: 'Poppins', sans-serif;
     height: 100%;
     width: 13em;
@@ -9,41 +9,48 @@
     box-shadow: 0px 4px 20px #E5E5E5;
 }
 
-.sidebar main {
+.adminSidebar main {
     color: #565456;
     margin-top: 8em;
     font-weight: 400;
 }
 
-.sidebar main ul li {
+.adminSidebar main ul{ 
+    /* padding-inline-start:  !important; */
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.adminSidebar main ul li {
     font-size: 13px;
-    margin-bottom: 35px;
     text-transform: capitalize;
     display: flex;
-    place-items:center ;
+    place-items:center;
 }
 
-.sidebar p {
+.adminSidebar p {
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
-.sidebar span {
+.adminSidebar span {
     margin-left: 10px;
 }
 
-.sidebar svg {
+.adminSidebar svg {
     font-size: 25px;
 }
 
 
 
 @media screen and (max-width: 550px) {
-    .sidebar {
+    .adminSidebar {
         width: 10em;
     }
 
-    .sidebar main{
+    .adminSidebar main{
         padding-left: 0px;
     }
 

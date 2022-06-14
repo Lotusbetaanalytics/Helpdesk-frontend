@@ -7,7 +7,7 @@ const Home = () => {
         <div className="landingPage">
             <div className="landingPageHead">
                 <Logo />
-                <Button btnText='Admin' bgColor='#00A19C' bxShadow='0px 4px 20px #FFFFFF' page='/admin/login'/>
+                <Button btnText='Admin' bgColor='#00A19C' bxShadow='0px 4px 20px #FFFFFF' page='/admin/login' padding='15px 40px' fontSize='18px'/>
             </div>
     
             <div className="landingPageBody">
@@ -19,8 +19,8 @@ const Home = () => {
                         <h1>HELPDESK</h1> 
                         <h1>PORTAL</h1>
                         <div className="landingBodyButton">
-                            <Button btnText='Register' bgColor='#00A19C' bxShadow='0px 4px 20px rgba(0, 0, 0, 0.56)' page='/user/register'/>
-                            <Button btnText='Login' bgColor='#FEA500' bxShadow='0px 4px 20px rgba(0, 0, 0, 0.56)' page='/user/login'/>
+                            <Button btnText='Register' bgColor='#00A19C' bxShadow='0px 4px 20px rgba(0, 0, 0, 0.56)' page='/user/register' padding='15px 40px' fontSize='18px'/>
+                            <Button btnText='Login' bgColor='#FEA500' bxShadow='0px 4px 20px rgba(0, 0, 0, 0.56)' page='/user/login' fontSize='18px' padding='15px 40px'/>
                         </div>   
                     </div>
                 </section>

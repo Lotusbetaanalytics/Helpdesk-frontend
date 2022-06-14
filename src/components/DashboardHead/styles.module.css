@@ -1,7 +1,7 @@
 .dashboardhead {
     font-family: 'Poppins';
     margin-left: 13em;
-    padding: 40px 50px 20px;
+    padding: 20px 50px 0;
 }
 
 .dashboardhead header {
@@ -13,12 +13,9 @@
     color: #565456;
     font-weight: 500;
     font-size: 14px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
-.dashboardhead > div > span {
-    
-}
 
 @media screen and (max-width: 550px) {
     .dashboardhead {

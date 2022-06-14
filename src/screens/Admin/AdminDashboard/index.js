@@ -1,12 +1,12 @@
 import DashboardHead from '../../../components/DashboardHead';
-import Sidebar from '../../../components/SideBar';
+import AdminSidebar from '../../../components/AdminSideBar';
 import Card from '../../../components/Card';
 import './admindashboard.css';
 
 const AdminDashboard = () => {
     return(
         <div className='admindashboard'>
-            <Sidebar sideBarContent1='Dashboard' sideBarContent2='Configuration' sideBarContent3='Tickets'/>
+            <AdminSidebar />
             <DashboardHead title='Dashboard'/>
 
             <div className='cardWrapper'>

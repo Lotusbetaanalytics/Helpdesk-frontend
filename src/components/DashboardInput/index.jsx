@@ -1,6 +1,6 @@
 const DashboardInput = ({ img,type, placeholder, inputName }) => {
     const dashboardInputStyle = {
-        height: '70px',
+        height: '75px',
         backgroundColor: 'rgba(196, 196, 196, 0.2)',
         backgroundImage: `url(${img})`,
         backgroundRepeat: 'no-repeat',
@@ -18,7 +18,7 @@ const DashboardInput = ({ img,type, placeholder, inputName }) => {
         backgroundColor: 'transparent',
         fontFamily: 'Inter',
         fontWeight: '500',
-        fontSize: '11px',
+        fontSize: '13px',
         color: 'rgba(0, 0, 0, 0.56)',
         border: '0',
         padding: '0 10px'

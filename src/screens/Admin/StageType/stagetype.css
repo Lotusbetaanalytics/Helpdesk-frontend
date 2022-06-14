@@ -1,0 +1,59 @@
+.mainWrapper {
+    font-family: 'Poppins';
+    margin-left: 14em;
+    padding: 0 30px 50px;
+}
+
+.btnWrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.checkboxesWrapper {
+    display: flex;
+    gap: 28%;
+   margin-top: 30px;
+}
+
+
+.checkboxesWrapper p {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.checkboxesWrapper div { 
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkboxesWrapper input {
+    width: 26px;
+    height: 26px;
+    border-radius: 0px !important;
+}
+
+.checkboxesWrapper input[type='checkbox'] {
+    border-radius: 0px !important;
+}
+
+.checkboxesWrapper label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #565456;
+    margin-left: 20px;
+}
+
+
+.checkboxesWrapper section:nth-of-type(2) > div {
+   margin-left: 40px;
+}
+
+
+@media screen and (max-width: 550px) {
+    .cardWrapper {
+        margin-left: 10em;
+    }
+
+}

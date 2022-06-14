@@ -1,10 +1,13 @@
 .cardWrapper {
+    font-family: 'Poppins';
     margin-left: 14em;
-    padding: 0 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+    padding: 0 30px 50px;
 }
+
+.cardWrapper .linkCardDiv {
+    margin-top: 60px;
+}
+
 
 
 @media screen and (max-width: 550px) {

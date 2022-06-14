@@ -38,7 +38,7 @@
 
 .landingBodyLeft p {
     font-size: 30px;
-    line-height: 60px;
+    line-height: 30px;
     position: relative;
 }
 
@@ -58,6 +58,7 @@
 
 .landingBodyLeft h1:nth-of-type(1) {
     margin-top: 25px;
+    margin-bottom: -60px;
 }
 
 .landingBodyLeft h1:nth-of-type(2) {

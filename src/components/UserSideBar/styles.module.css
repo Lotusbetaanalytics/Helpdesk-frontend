@@ -1,0 +1,85 @@
+.userSidebar {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 13em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0px 4px 20px #E5E5E5;
+}
+
+.userSidebar main {
+    color: #565456;
+    margin-top: 8em;
+    font-weight: 400;
+}
+
+.userSidebar main ul li {
+    font-size: 13px;
+    text-transform: capitalize;
+    display: flex;
+    place-items:center ;
+}
+
+.userSidebar p {
+    display: flex;
+    place-items: center;
+}
+
+.userSidebar svg {
+    color: #565456;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+
+.userSidebar span {
+    margin-left: 10px;
+}
+
+
+.userSidebar main ul li:hover, .userSidebar main ul li p:hover, .userSidebar main ul li svg:hover {
+    color: #9A198C;
+    font-weight: 500;
+}
+
+.userSidebar main ul li:hover {
+    /* border-left: 7px solid #9A198C; */
+    width: 100%;
+    box-shadow: -7px 0px 0px 0px #9A198C ;
+    border-spacing: 15px 50px;
+    outline-left: 1px navy solid;  /* inner stroke */
+  outline-left-offset: 20px; 
+}
+
+.userSidebar main ul li:active {
+    /* border-left: 7px solid #9A198C; */
+    width: 100%;
+    box-shadow: -7px 0px 0px 0px #9A198C ;
+    border-spacing: 15px 50px;
+    outline-left: 1px navy solid;  /* inner stroke */
+  outline-left-offset: 20px; 
+}
+
+.userSidebar main ul li:focus {
+    /* border-left: 7px solid #9A198C; */
+    width: 100%;
+    box-shadow: -7px 0px 0px 0px #9A198C ;
+    border-spacing: 15px 50px;
+    outline-left: 1px navy solid;  /* inner stroke */
+  outline-left-offset: 20px; 
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .userSidebar {
+        width: 10em;
+    }
+
+    .userSidebar main{
+        padding-left: 0px;
+    }
+
+}

@@ -1,4 +1,4 @@
-const Input = ({ img,type, placeholder }) => {
+const Input = ({ img, type="text", placeholder }) => {
     const inputStyle = {
         width: '29em',
         fontFamily: 'Inter',

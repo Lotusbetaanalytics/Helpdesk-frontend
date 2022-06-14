@@ -1,0 +1,23 @@
+.cardWrapper {
+    font-family: 'Poppins';
+    margin-left: 14em;
+    padding: 0 30px 50px;
+}
+
+.cardWrapper p:nth-of-type(1) {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cardWrapper .linkCardDiv {
+    margin-top: 60px;
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .cardWrapper {
+        margin-left: 10em;
+    }
+
+}

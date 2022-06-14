@@ -1,21 +1,20 @@
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 
 
-const LinkCard = ({ bgColor, width, height, border, bxShadow, linkCardText }) => {
+const LinkCard = ({ borderRadius, linkCardText, page }) => {
 
     return(
         <div className={styles.linkcard}
              style={{
-                background: `${bgColor}`,
-                width: `${width}`,
-                height: `${height}`,
-                border: `${border}`,
-                boxShadow: `${bxShadow}`,
                 display: 'flex',
-                flex: '100%'}}>
-                    <div>
+                flex: '100%'
+                }}>
+                    <Link to={page}><div style={{
+                         borderRadius: borderRadius,
+                    }}>
                         <p>{linkCardText}</p>
-                    </div>  
+                    </div>  </Link>
         </div>
     )
 }
