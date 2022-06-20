@@ -1,24 +1,37 @@
-import { AiOutlineClose } from 'react-icons/ai';
-import AdminSideBar from '../AdminSideBar';
-import styles from './styles.module.css';
-import Button from '../Button';
+import React, { useEffect } from 'react'
+import './modal.css'
 
+const Modal = ({ isVisible = false, title, content, footer, onClose, size = "md" }) => {
+  const keydownHandler = ({ key }) => {
+    switch (key) {
+      case 'Escape':
+        onClose();
+        break;
+      default:
+    }
+  };
 
-const Modal = ({ setIsOpen }) => {
-  return (
-    <div className={styles.modal} onClick={ () => setIsOpen(false) }>
-        <AdminSideBar />
-        <div className={styles.wrapper}>
-          <div>
-              <p className={styles.modalCloseBtn}>
-                <AiOutlineClose onClick={ () => setIsOpen(false) }/>
-              </p>
-              <input type='text' name='teamname' id='teamname' placeholder='Team Name'/>
-              <p><Button fontSize='14px' btnText='Add' padding='22px 55px' page='/' className={styles.btn}/></p>
-          </div>
+  useEffect(() => {
+    document.addEventListener('keydown', keydownHandler);
+    return () => document.removeEventListener('keydown', keydownHandler);
+  });
+
+  return !isVisible ? null : (
+    <div className="modal" onClick={onClose}>
+      <div className={`modal-dialog ${size}`} onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <h3 className="modal-title">{title}</h3>
+          <span className="modal-close" onClick={onClose}>
+            &times;
+          </span>
         </div>
+        <div className="modal-body">
+          <div className="modal-content">{content}</div>
+        </div>
+        {footer && <div className="modal-footer">{footer}</div>}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal;
+export default Modal

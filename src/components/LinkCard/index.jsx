@@ -2,19 +2,21 @@ import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 
 
-const LinkCard = ({ borderRadius, linkCardText, page }) => {
+const LinkCard = ({ borderRadius, linkCardText, page, Edit, Delete, onEdit, onDelete }) => {
 
-    return(
+    return (
         <div className={styles.linkcard}
-             style={{
+            style={{
                 display: 'flex',
                 flex: '100%'
-                }}>
-                    <Link to={page}><div style={{
-                         borderRadius: borderRadius,
-                    }}>
-                        <p>{linkCardText}</p>
-                    </div>  </Link>
+            }}>
+            <div style={{
+                borderRadius: borderRadius,
+            }}>
+                <p>{linkCardText}</p>
+                {Edit && <Edit onClick={onEdit} />}
+                {Delete && <Delete onClick={onDelete} />}
+            </div>
         </div>
     )
 }

@@ -1,0 +1,9 @@
+export const ADMIN_LOGIN_REQUEST = "ADMIN_LOGIN_REQUEST";
+export const ADMIN_LOGIN_SUCCESS = "ADMIN_LOGIN_SUCCESS";
+export const ADMIN_LOGIN_FAIL = "ADMIN_LOGIN_FAIL";
+export const ADMIN_LOGOUT = "ADMIN_LOGOUT";
+
+export const GET_ME_REQUEST = "GET_ME_REQUEST";
+export const GET_ME_SUCCESS = "GET_ME_SUCCESS";
+export const GET_ME_FAIL = "GET_ME_FAIL";
+export const GET_ME_RESET = "GET_ME_RESET";

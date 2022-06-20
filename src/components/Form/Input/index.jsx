@@ -1,4 +1,4 @@
-const Input = ({ img, type="text", placeholder }) => {
+const Input = ({ img, type = "text", placeholder, value, onChange }) => {
     const inputStyle = {
         width: '29em',
         fontFamily: 'Inter',
@@ -16,9 +16,9 @@ const Input = ({ img, type="text", placeholder }) => {
         marginBottom: '12px'
     }
 
-    return(
+    return (
         <div>
-            <input style={inputStyle} type={type} placeholder={placeholder}/>
+            <input style={inputStyle} type={type} placeholder={placeholder} value={value} onChange={onChange} />
         </div>
     )
 }

@@ -1,0 +1,11 @@
+.userRegister {
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.userRegisterBody {
+    min-height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

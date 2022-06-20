@@ -1,27 +1,82 @@
+import { useEffect } from "react";
 import FormHeader from "../../../components/Form/FormHeader";
 import FormTitle from "../../../components/Form/FormTitle";
-import Input from "../../../components/Form/Input";
-import email_icon from '../../../assets/email_icon.png';
-import pwd_icon from '../../../assets/pwd_icon.png';
-import './adminlogin.css'
-import FormButton from "../../../components/Form/FormButton";
+import MicrosoftLogin from "react-microsoft-login";
+import "./adminlogin.css";
+import { useNavigate } from "react-router-dom";
+import { useToast, CircularProgress, Center } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { ADMIN_LOGOUT } from "../../../redux/constants/admin/authConstants";
+import { adminAuth } from "../../../redux/actions/admin/authActions";
 
 const AdminLogin = () => {
-    return(
-        <div className="adminLogin">
-            <FormHeader />
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const toast = useToast();
+  //   Microsoft SSO
+  const authHandler = (err, data, msal) => {
+    if (err) {
+      toast({
+        title: "Error",
+        description: err.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      sessionStorage.clear();
+    }
+    if (data) {
+      const accessToken = data.accessToken;
+      dispatch(adminAuth(accessToken));
+      sessionStorage.clear();
+    }
+  };
 
-            <div className="adminLoginBody">
-                <div>
-                    <FormTitle title='Hello There!' subTitle='Please enter your correct details'/>
-                    <Input img={email_icon} type='email' placeholder='Email Address'/>
-                    <Input img={pwd_icon} type='password' placeholder='Password'/>
-                    <FormButton bgColor='#00A19C' bxShadow='0px 4px 4px rgba(0, 161, 156, 0.37)' content='Login'/>
-                </div>
-            </div>
-        </div>    
-    )
-}
+  const adminLogin = useSelector((state) => state.adminLogin);
+  const { adminInfo, error, loading } = adminLogin;
 
+  // if token exist redirect to dashboard
+  useEffect(() => {
+    if (adminInfo) {
+      navigate("/admin/dashboard");
+    }
+  }, [navigate, adminInfo]);
+
+  // if error login
+  if (error) {
+    toast({
+      title: "Error",
+      description: error,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+    dispatch({ type: ADMIN_LOGOUT });
+  }
+  return (
+    <div className="adminLogin">
+      <FormHeader />
+
+      <div className="adminLoginBody">
+        <div>
+          <FormTitle
+            title="Hello There!"
+            subTitle="Please Click on the button to sign in"
+          />
+          {loading ? (
+            <Center>
+              <CircularProgress isIndeterminate color="#087E8C" />
+            </Center>
+          ) : (
+            <MicrosoftLogin
+              clientId="ee241df3-3ed6-424f-95cb-2b58de8f5e07"
+              authCallback={authHandler}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default AdminLogin;
