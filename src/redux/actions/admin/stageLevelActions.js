@@ -1,26 +1,27 @@
 import axios from "axios";
 import {
-  CREATE_TICKET_FAIL,
-  CREATE_TICKET_REQUEST,
-  CREATE_TICKET_SUCCESS,
-  GET_TICKETS_FAIL,
-  GET_TICKETS_REQUEST,
-  GET_TICKETS_SUCCESS,
-  GET_TICKET_FAIL,
-  GET_TICKET_REQUEST,
-  GET_TICKET_SUCCESS,
-  DELETE_TICKET_FAIL,
-  DELETE_TICKET_REQUEST,
-  DELETE_TICKET_SUCCESS,
-  UPDATE_TICKET_FAIL,
-  UPDATE_TICKET_REQUEST,
-  UPDATE_TICKET_SUCCESS,
-} from "../../constants/admin/ticketConstants";
+  CREATE_STAGE_LEVEL_FAIL,
+  CREATE_STAGE_LEVEL_REQUEST,
+  CREATE_STAGE_LEVEL_SUCCESS,
+  GET_STAGES_LEVEL_FAIL,
+  GET_STAGES_LEVEL_REQUEST,
+  GET_STAGES_LEVEL_SUCCESS,
+  GET_STAGE_LEVEL_FAIL,
+  GET_STAGE_LEVEL_REQUEST,
+  GET_STAGE_LEVEL_SUCCESS,
+  DELETE_STAGE_LEVEL_FAIL,
+  DELETE_STAGE_LEVEL_REQUEST,
+  DELETE_STAGE_LEVEL_SUCCESS,
+  UPDATE_STAGE_LEVEL_FAIL,
+  UPDATE_STAGE_LEVEL_REQUEST,
+  UPDATE_STAGE_LEVEL_SUCCESS,
+} from "../../constants/admin/stageLevelConstants";
+
 import { BASE_URL } from "../../config";
 
-export const addTicket = (ticketTypeName) => async (dispatch, getState) => {
+export const addStageLevel = (stageLevelName) => async (dispatch, getState) => {
   try {
-    dispatch({ type: CREATE_TICKET_REQUEST });
+    dispatch({ type: CREATE_STAGE_LEVEL_REQUEST });
     const {
       adminLogin: { adminInfo },
     } = getState();
@@ -31,18 +32,18 @@ export const addTicket = (ticketTypeName) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.post(
-      `${BASE_URL}/api/helpdesk/admin/TicketType/CreateTicketType`,
-      { ticketTypeName },
+      `${BASE_URL}/api/helpdesk/admin/StageLevel/CreateStageLevel`,
+      { stageLevelName },
       config
     );
 
     dispatch({
-      type: CREATE_TICKET_SUCCESS,
+      type: CREATE_STAGE_LEVEL_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: CREATE_TICKET_FAIL,
+      type: CREATE_STAGE_LEVEL_FAIL,
       payload:
         error.response && error.response.data.responseMessage
           ? error.response.data.responseMessage
@@ -51,9 +52,9 @@ export const addTicket = (ticketTypeName) => async (dispatch, getState) => {
   }
 };
 
-export const fetchTicket = (id) => async (dispatch, getState) => {
+export const fetchStageLevel = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: GET_TICKET_REQUEST });
+    dispatch({ type: GET_STAGE_LEVEL_REQUEST });
     const {
       adminLogin: { adminInfo },
     } = getState();
@@ -65,17 +66,17 @@ export const fetchTicket = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `${BASE_URL}/api/helpdesk/admin/TicketType/${id}`,
+      `${BASE_URL}/api/helpdesk/admin/StageLevel/${id}`,
       config
     );
 
     dispatch({
-      type: GET_TICKET_SUCCESS,
+      type: GET_STAGE_LEVEL_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_TICKET_FAIL,
+      type: GET_STAGE_LEVEL_FAIL,
       payload:
         error.response && error.response.data.responseMessage
           ? error.response.data.responseMessage
@@ -84,9 +85,9 @@ export const fetchTicket = (id) => async (dispatch, getState) => {
   }
 };
 
-export const fetchTickets = () => async (dispatch, getState) => {
+export const fetchStagesLevel = () => async (dispatch, getState) => {
   try {
-    dispatch({ type: GET_TICKETS_REQUEST });
+    dispatch({ type: GET_STAGES_LEVEL_REQUEST });
     const {
       adminLogin: { adminInfo },
     } = getState();
@@ -98,17 +99,17 @@ export const fetchTickets = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `${BASE_URL}/api/helpdesk/admin/TicketType/`,
+      `${BASE_URL}/api/helpdesk/admin/StageLevel/`,
       config
     );
 
     dispatch({
-      type: GET_TICKETS_SUCCESS,
+      type: GET_STAGES_LEVEL_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_TICKETS_FAIL,
+      type: GET_STAGES_LEVEL_FAIL,
       payload:
         error.response && error.response.data.responseMessage
           ? error.response.data.responseMessage
@@ -117,9 +118,9 @@ export const fetchTickets = () => async (dispatch, getState) => {
   }
 };
 
-export const removeTicket = (id) => async (dispatch, getState) => {
+export const removeStageLevel = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: DELETE_TICKET_REQUEST });
+    dispatch({ type: DELETE_STAGE_LEVEL_REQUEST });
     const {
       adminLogin: { adminInfo },
     } = getState();
@@ -131,17 +132,17 @@ export const removeTicket = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.delete(
-      `${BASE_URL}/api/helpdesk/admin/TicketType/${id}`,
+      `${BASE_URL}/api/helpdesk/admin/StageLevel/${id}`,
       config
     );
 
     dispatch({
-      type: DELETE_TICKET_SUCCESS,
+      type: DELETE_STAGE_LEVEL_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: DELETE_TICKET_FAIL,
+      type: DELETE_STAGE_LEVEL_FAIL,
       payload:
         error.response && error.response.data.responseMessage
           ? error.response.data.responseMessage
@@ -150,10 +151,10 @@ export const removeTicket = (id) => async (dispatch, getState) => {
   }
 };
 
-export const editTicket =
-  (ticketTypeName, id) => async (dispatch, getState) => {
+export const editStageLevel =
+  (stageLevelName, id) => async (dispatch, getState) => {
     try {
-      dispatch({ type: UPDATE_TICKET_REQUEST });
+      dispatch({ type: UPDATE_STAGE_LEVEL_REQUEST });
       const {
         adminLogin: { adminInfo },
       } = getState();
@@ -165,18 +166,18 @@ export const editTicket =
         },
       };
       const { data } = await axios.put(
-        `${BASE_URL}/api/helpdesk/admin/TicketType/${id}`,
-        { ticketTypeName },
+        `${BASE_URL}/api/helpdesk/admin/StageLevel/${id}`,
+        { stageLevelName },
         config
       );
 
       dispatch({
-        type: UPDATE_TICKET_SUCCESS,
+        type: UPDATE_STAGE_LEVEL_SUCCESS,
         payload: data,
       });
     } catch (error) {
       dispatch({
-        type: UPDATE_TICKET_FAIL,
+        type: UPDATE_STAGE_LEVEL_FAIL,
         payload:
           error.response && error.response.data.responseMessage
             ? error.response.data.responseMessage

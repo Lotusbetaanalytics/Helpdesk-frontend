@@ -5,7 +5,7 @@ import { RiTicketLine } from 'react-icons/ri';
 import Logo from '../Logo';
 import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { adminLogout, fetchAdminProfile } from '../../redux/actions/admin/authActions';
 
 
@@ -19,25 +19,39 @@ const AdminSideBar = () => {
         dispatch(fetchAdminProfile())
     }, [dispatch])
 
+    console.log(admin)
+
     const logout = () => {
         dispatch(adminLogout())
     }
-    console.log(admin)
+    const [toggle, setToggle] = useState(false)
     return (
         <div className={styles.adminSidebar}>
             <header>
                 <Logo logoContent='HelpDesk' />
             </header>
 
-            <main>
+            <div className={styles.links}>
                 <ul>
-                    <Link to='/admin/dashboard'><li><p><MdDashboard /> <span>Dashboard</span>
-                    </p></li></Link>
-                    <Link to='/admin/configuration'><li><p><GrTicket /> <span>Configuration</span></p></li></Link>
-                    <Link to='/'><li><p><RiTicketLine /> <span>Tickets</span></p></li></Link>
-                    <Link to='/#' onClick={logout}><li><p><RiTicketLine /> <span>Logout</span></p></li></Link>
+                    <li><Link to={`/admin/dashboard`}><MdDashboard />Dashboard</Link></li>
+                    <li onClick={() => setToggle(!toggle)}><GrTicket />Configuration</li>
+                    {toggle && <div className={styles.inner}>
+                        <ul>
+                            <li><Link to='/admin/configuration'>Helpdesk Teams</Link></li>
+                            <li><Link to='/admin/configuration/ticket/type'>Ticket Type</Link></li>
+                            <li><Link to='/admin/configuration/stages'>Stages</Link></li>
+                            <li><Link to='/admin/configuration/priority'>Priority</Link></li>
+                            <li><Link to='/admin/configuration/sla/policies'>SLA Policies</Link></li>
+                        </ul>
+                    </div>}
+                    <li><Link to={`/admin/tickets`}><RiTicketLine /> Tickets</Link></li>
+                    <li><Link to={`/#`} onClick={logout}><RiTicketLine />Logout</Link></li>
+
+
+
                 </ul>
-            </main>
+            </div>
+
         </div>
     )
 }

@@ -2,73 +2,73 @@ import DashboardHead from "../../../components/DashboardHead";
 import AdminSidebar from "../../../components/AdminSideBar";
 import Tabs from "../../../components/Tabs";
 import LinkCard from "../../../components/LinkCard";
-import "./tickettype.css";
+import "./styles.css";
 import { useEffect, useState, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast, CircularProgress, Center } from "@chakra-ui/react";
 import {
-  addTicket,
-  editTicket,
-  fetchTickets,
-  removeTicket,
-} from "../../../redux/actions/admin/ticketActions";
+  addTag,
+  editTag,
+  fetchTag,
+  removeTag,
+} from "../../../redux/actions/admin/tagActions";
 import {
-  CREATE_TICKET_RESET,
-  DELETE_TICKET_RESET,
-  UPDATE_TICKET_RESET,
-} from "../../../redux/constants/admin/ticketConstants";
+  CREATE_TAG_RESET,
+  DELETE_TAG_RESET,
+  UPDATE_TAG_RESET,
+} from "../../../redux/constants/admin/tagConstants";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import swal from "sweetalert";
 import Modal from "../../../components/Modal";
 import Input from "../../../components/Form/Input";
 import FormButton from "../../../components/Form/FormButton";
 
-const TicketType = () => {
+const Tag = () => {
   // helpers
   const dispatch = useDispatch();
   const toast = useToast();
 
   // states
-  const createTicket = useSelector((state) => state.createTicket);
-  const { loading, error, success } = createTicket;
-  const updateTicket = useSelector((state) => state.updateTicket);
-  const { loading: uLoading, error: uError, success: uSuccess } = updateTicket;
-  const deleteTicket = useSelector((state) => state.deleteTicket);
-  const { loading: dLoading, error: dError, success: dSuccess } = deleteTicket;
-  const getAllTickets = useSelector((state) => state.getAllTickets);
-  const { tickets = [] } = getAllTickets;
+  const createTag = useSelector((state) => state.createTag);
+  const { loading, error, success } = createTag;
+  const updateTag = useSelector((state) => state.updateTag);
+  const { loading: uLoading, error: uError, success: uSuccess } = updateTag;
+  const deleteTag = useSelector((state) => state.deleteTag);
+  const { loading: dLoading, error: dError, success: dSuccess } = deleteTag;
+  const getTags = useSelector((state) => state.getTags);
+  const { tags = [] } = getTags;
 
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [ticketTypeName, setTicketTypeName] = useState("");
+  const [tagName, setTagName] = useState("");
   const [id, setId] = useState(null);
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!ticketTypeName) {
+    if (!tagName) {
       toast({
         title: "Warning!",
-        description: "Enter Ticket Name",
+        description: "Enter Tag Name",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(addTicket(ticketTypeName));
+      dispatch(addTag(tagName));
     }
   };
 
   const editHandler = (e) => {
     e.preventDefault();
-    if (!ticketTypeName) {
+    if (!tagName) {
       toast({
         title: "Warning!",
-        description: "Enter Ticket Name",
+        description: "Enter Tag Name",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(editTicket(ticketTypeName, id));
+      dispatch(editTag(tagName, id));
     }
   };
 
@@ -80,21 +80,21 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: CREATE_TICKET_RESET });
+    dispatch({ type: CREATE_TAG_RESET });
   }
 
   if (success) {
     toast({
       title: "Success",
-      description: "Create Ticket Success",
+      description: "Create Tag Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
-    dispatch(fetchTickets());
-    setTicketTypeName("");
-    dispatch({ type: CREATE_TICKET_RESET });
+    dispatch(fetchTag());
+    setTagName("");
+    dispatch({ type: CREATE_TAG_RESET });
   }
 
   if (uError) {
@@ -105,22 +105,22 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: UPDATE_TICKET_RESET });
+    dispatch({ type: UPDATE_TAG_RESET });
   }
 
   if (uSuccess) {
     toast({
       title: "Success",
-      description: "Ticket Update Success",
+      description: "Update Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
     setEdit(false);
-    dispatch(fetchTickets());
-    setTicketTypeName("");
-    dispatch({ type: UPDATE_TICKET_RESET });
+    dispatch(fetchTag());
+    setTagName("");
+    dispatch({ type: UPDATE_TAG_RESET });
   }
 
   if (dError) {
@@ -131,7 +131,7 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: DELETE_TICKET_RESET });
+    dispatch({ type: DELETE_TAG_RESET });
   }
 
   if (dSuccess) {
@@ -142,12 +142,12 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch(fetchTickets());
-    dispatch({ type: DELETE_TICKET_RESET });
+    dispatch(fetchTag());
+    dispatch({ type: DELETE_TAG_RESET });
   }
 
   useEffect(() => {
-    dispatch(fetchTickets());
+    dispatch(fetchTag());
   }, [dispatch]);
 
   const closeHandler = () => {
@@ -157,11 +157,11 @@ const TicketType = () => {
   const openHandler = () => {
     setIsOpen(true);
     setEdit(false);
-    setTicketTypeName("");
+    setTagName("");
   };
 
   const editTeamModal = (name, id) => {
-    setTicketTypeName(name);
+    setTagName(name);
     setId(id);
     setIsOpen(true);
     setEdit(true);
@@ -170,13 +170,13 @@ const TicketType = () => {
   const deleteHandler = (id) => {
     swal({
       title: "Are you sure?",
-      text: "Are you sure you want to delete this Ticket",
+      text: "Are you sure you want to delete this Tag",
       icon: "warning",
       dangerMode: true,
       buttons: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(removeTicket(id));
+        dispatch(removeTag(id));
       }
     });
   };
@@ -194,7 +194,7 @@ const TicketType = () => {
         <div className="cardWrapper">
           <Tabs />
 
-          <button onClick={openHandler}>Create Ticket Type</button>
+          <button onClick={openHandler}>Create Tag</button>
 
           <div className="linkCardDiv"></div>
 
@@ -204,15 +204,15 @@ const TicketType = () => {
             </Center>
           ) : (
             <>
-              {tickets.map((item, i) => (
+              {tags.map((item, i) => (
                 <LinkCard
                   borderRadius="15px"
-                  linkCardText={item.ticketTypeName}
+                  linkCardText={item.tagName}
                   page="/"
                   key={i}
                   Edit={BiEdit}
                   Delete={BiTrash}
-                  onEdit={() => editTeamModal(item.ticketTypeName, item.id)}
+                  onEdit={() => editTeamModal(item.tagName, item.id)}
                   onDelete={() => deleteHandler(item.id)}
                 />
               ))}
@@ -221,7 +221,7 @@ const TicketType = () => {
 
           <Modal
             isVisible={isOpen}
-            title={edit ? "Edit Ticket" : "Create Ticket"}
+            title={edit ? "Edit Tag" : "Create Tag"}
             size="lg"
             content={
               uLoading || loading ? (
@@ -234,13 +234,13 @@ const TicketType = () => {
                     img=""
                     type="text"
                     placeholder="Name"
-                    value={ticketTypeName}
-                    onChange={(e) => setTicketTypeName(e.target.value)}
+                    value={tagName}
+                    onChange={(e) => setTagName(e.target.value)}
                   />
                   <FormButton
                     bgColor="#FEA500"
                     bxShadow="0px 4px 4px rgba(254, 165, 0, 0.43)"
-                    content={edit ? "Edit Ticket" : "Create Ticket"}
+                    content={edit ? "Edit Tag" : "Create Tag"}
                   />
                 </form>
               )
@@ -253,4 +253,4 @@ const TicketType = () => {
   );
 };
 
-export default TicketType;
+export default Tag;

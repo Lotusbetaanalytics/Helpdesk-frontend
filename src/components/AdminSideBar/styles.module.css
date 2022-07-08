@@ -9,48 +9,121 @@
     box-shadow: 0px 4px 20px #E5E5E5;
 }
 
-.adminSidebar main {
-    color: #565456;
-    margin-top: 8em;
-    font-weight: 400;
+.links {
+    display: flex;
+    padding: 2rem 0;
+    padding-top: 5rem;
+    flex-direction: column;
 }
 
-.adminSidebar main ul{ 
-    /* padding-inline-start:  !important; */
+.links ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: column;
+}
+
+.links ul li {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    height: 3rem;
+    cursor: pointer;
+    padding-left: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.links ul li:hover {
+    background: #9A198C;
+    color: white;
+    border-radius: 10px;
+}
+
+.links ul li:hover a {
+    color: white;
+}
+
+
+.links ul li a {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}
+
+.links ul li span {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.links ul li a svg {
+    margin-right: .5rem;
+    margin-top: .1rem;
+}
+
+.links ul li span svg {
+    margin-right: .5rem;
+    margin-top: .1rem;
+}
+
+.links .active {
+    background: #9A198C;
+    color: white;
+    border-radius: 10px;
+}
+
+.inner {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    padding: .5rem 1rem;
+    color: white;
+    background: #9A198C;
 }
 
-.adminSidebar main ul li {
-    font-size: 13px;
-    text-transform: capitalize;
+.inner ul {
     display: flex;
-    place-items:center;
+    list-style: none;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: column;
 }
 
-.adminSidebar p {
+.inner ul li {
     display: flex;
-    justify-content: center;
+    list-style: none;
+    justify-content: flex-start;
+    height: 2rem;
+    cursor: pointer;
+    padding-left: 1rem;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
-.adminSidebar span {
-    margin-left: 10px;
+.inner ul li a {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
 }
 
-.adminSidebar svg {
-    font-size: 25px;
+.inner ul li span {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
 }
-
-
 
 @media screen and (max-width: 550px) {
     .adminSidebar {
         width: 10em;
     }
 
-    .adminSidebar main{
+    .adminSidebar main {
         padding-left: 0px;
     }
 

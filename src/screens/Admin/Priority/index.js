@@ -1,74 +1,82 @@
 import DashboardHead from "../../../components/DashboardHead";
 import AdminSidebar from "../../../components/AdminSideBar";
-import Tabs from "../../../components/Tabs";
+// import Tabs from "../../../components/Tabs";
 import LinkCard from "../../../components/LinkCard";
-import "./tickettype.css";
+import "./styles.css";
 import { useEffect, useState, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast, CircularProgress, Center } from "@chakra-ui/react";
 import {
-  addTicket,
-  editTicket,
-  fetchTickets,
-  removeTicket,
-} from "../../../redux/actions/admin/ticketActions";
+  addPriority,
+  editPriority,
+  fetchPrioritys,
+  removePriority,
+} from "../../../redux/actions/admin/priorityActions";
 import {
-  CREATE_TICKET_RESET,
-  DELETE_TICKET_RESET,
-  UPDATE_TICKET_RESET,
-} from "../../../redux/constants/admin/ticketConstants";
+  CREATE_PRIORITY_RESET,
+  DELETE_PRIORITY_RESET,
+  UPDATE_PRIORITY_RESET,
+} from "../../../redux/constants/admin/priorityConstants";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import swal from "sweetalert";
 import Modal from "../../../components/Modal";
 import Input from "../../../components/Form/Input";
 import FormButton from "../../../components/Form/FormButton";
 
-const TicketType = () => {
+const Priority = () => {
   // helpers
   const dispatch = useDispatch();
   const toast = useToast();
 
   // states
-  const createTicket = useSelector((state) => state.createTicket);
-  const { loading, error, success } = createTicket;
-  const updateTicket = useSelector((state) => state.updateTicket);
-  const { loading: uLoading, error: uError, success: uSuccess } = updateTicket;
-  const deleteTicket = useSelector((state) => state.deleteTicket);
-  const { loading: dLoading, error: dError, success: dSuccess } = deleteTicket;
-  const getAllTickets = useSelector((state) => state.getAllTickets);
-  const { tickets = [] } = getAllTickets;
+  const createPriority = useSelector((state) => state.createPriority);
+  const { loading, error, success } = createPriority;
+  const updatePriority = useSelector((state) => state.updatePriority);
+  const {
+    loading: uLoading,
+    error: uError,
+    success: uSuccess,
+  } = updatePriority;
+  const deletePriority = useSelector((state) => state.deletePriority);
+  const {
+    loading: dLoading,
+    error: dError,
+    success: dSuccess,
+  } = deletePriority;
+  const getAllPrioritys = useSelector((state) => state.getAllPrioritys);
+  const { prioritys = [] } = getAllPrioritys;
 
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [ticketTypeName, setTicketTypeName] = useState("");
+  const [level, setLevel] = useState("");
   const [id, setId] = useState(null);
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!ticketTypeName) {
+    if (!level) {
       toast({
         title: "Warning!",
-        description: "Enter Ticket Name",
+        description: "Enter Level",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(addTicket(ticketTypeName));
+      dispatch(addPriority(level));
     }
   };
 
   const editHandler = (e) => {
     e.preventDefault();
-    if (!ticketTypeName) {
+    if (!level) {
       toast({
         title: "Warning!",
-        description: "Enter Ticket Name",
+        description: "Enter Level",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(editTicket(ticketTypeName, id));
+      dispatch(editPriority(level, id));
     }
   };
 
@@ -80,21 +88,21 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: CREATE_TICKET_RESET });
+    dispatch({ type: CREATE_PRIORITY_RESET });
   }
 
   if (success) {
     toast({
       title: "Success",
-      description: "Create Ticket Success",
+      description: "Create Level Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
-    dispatch(fetchTickets());
-    setTicketTypeName("");
-    dispatch({ type: CREATE_TICKET_RESET });
+    dispatch(fetchPrioritys());
+    setLevel("");
+    dispatch({ type: CREATE_PRIORITY_RESET });
   }
 
   if (uError) {
@@ -105,22 +113,22 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: UPDATE_TICKET_RESET });
+    dispatch({ type: UPDATE_PRIORITY_RESET });
   }
 
   if (uSuccess) {
     toast({
       title: "Success",
-      description: "Ticket Update Success",
+      description: "Priority Update Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
     setEdit(false);
-    dispatch(fetchTickets());
-    setTicketTypeName("");
-    dispatch({ type: UPDATE_TICKET_RESET });
+    dispatch(fetchPrioritys());
+    setLevel("");
+    dispatch({ type: UPDATE_PRIORITY_RESET });
   }
 
   if (dError) {
@@ -131,7 +139,7 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: DELETE_TICKET_RESET });
+    dispatch({ type: DELETE_PRIORITY_RESET });
   }
 
   if (dSuccess) {
@@ -142,12 +150,12 @@ const TicketType = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch(fetchTickets());
-    dispatch({ type: DELETE_TICKET_RESET });
+    dispatch(fetchPrioritys());
+    dispatch({ type: DELETE_PRIORITY_RESET });
   }
 
   useEffect(() => {
-    dispatch(fetchTickets());
+    dispatch(fetchPrioritys());
   }, [dispatch]);
 
   const closeHandler = () => {
@@ -157,11 +165,11 @@ const TicketType = () => {
   const openHandler = () => {
     setIsOpen(true);
     setEdit(false);
-    setTicketTypeName("");
+    setLevel("");
   };
 
   const editTeamModal = (name, id) => {
-    setTicketTypeName(name);
+    setLevel(name);
     setId(id);
     setIsOpen(true);
     setEdit(true);
@@ -170,13 +178,13 @@ const TicketType = () => {
   const deleteHandler = (id) => {
     swal({
       title: "Are you sure?",
-      text: "Are you sure you want to delete this Ticket",
+      text: "Are you sure you want to delete this Level",
       icon: "warning",
       dangerMode: true,
       buttons: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(removeTicket(id));
+        dispatch(removePriority(id));
       }
     });
   };
@@ -192,9 +200,9 @@ const TicketType = () => {
         }
       >
         <div className="cardWrapper">
-          <Tabs />
+          {/* <Tabs /> */}
 
-          <button onClick={openHandler}>Create Ticket Type</button>
+          <button onClick={openHandler}>Create Level</button>
 
           <div className="linkCardDiv"></div>
 
@@ -204,15 +212,15 @@ const TicketType = () => {
             </Center>
           ) : (
             <>
-              {tickets.map((item, i) => (
+              {prioritys.map((item, i) => (
                 <LinkCard
                   borderRadius="15px"
-                  linkCardText={item.ticketTypeName}
+                  linkCardText={item.level}
                   page="/"
                   key={i}
                   Edit={BiEdit}
                   Delete={BiTrash}
-                  onEdit={() => editTeamModal(item.ticketTypeName, item.id)}
+                  onEdit={() => editTeamModal(item.level, item.id)}
                   onDelete={() => deleteHandler(item.id)}
                 />
               ))}
@@ -221,7 +229,7 @@ const TicketType = () => {
 
           <Modal
             isVisible={isOpen}
-            title={edit ? "Edit Ticket" : "Create Ticket"}
+            title={edit ? "Edit Level" : "Create Level"}
             size="lg"
             content={
               uLoading || loading ? (
@@ -234,13 +242,13 @@ const TicketType = () => {
                     img=""
                     type="text"
                     placeholder="Name"
-                    value={ticketTypeName}
-                    onChange={(e) => setTicketTypeName(e.target.value)}
+                    value={level}
+                    onChange={(e) => setLevel(e.target.value)}
                   />
                   <FormButton
                     bgColor="#FEA500"
                     bxShadow="0px 4px 4px rgba(254, 165, 0, 0.43)"
-                    content={edit ? "Edit Ticket" : "Create Ticket"}
+                    content={edit ? "Edit Level" : "Create Level"}
                   />
                 </form>
               )
@@ -253,4 +261,4 @@ const TicketType = () => {
   );
 };
 
-export default TicketType;
+export default Priority;

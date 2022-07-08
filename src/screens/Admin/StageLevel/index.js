@@ -1,75 +1,82 @@
-import { useState, Suspense, useEffect } from "react";
 import DashboardHead from "../../../components/DashboardHead";
 import AdminSidebar from "../../../components/AdminSideBar";
-// import Tabs from "../../../components/Tabs";
+import Tabs from "../../../components/Tabs";
 import LinkCard from "../../../components/LinkCard";
-import "./configuration.css";
-import Modal from "../../../components/Modal";
-import Input from "../../../components/Form/Input";
-import FormButton from "../../../components/Form/FormButton";
+import "./stages.css";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast, CircularProgress, Center } from "@chakra-ui/react";
 import {
-  addTeam,
-  editTeam,
-  fetchTeams,
-  removeTeam,
-} from "../../../redux/actions/admin/teamActions";
+  addStageLevel,
+  editStageLevel,
+  fetchStagesLevel,
+  removeStageLevel,
+} from "../../../redux/actions/admin/stageLevelActions";
 import {
-  CREATE_TEAM_RESET,
-  DELETE_TEAM_RESET,
-  UPDATE_TEAM_RESET,
-} from "../../../redux/constants/admin/teamConstants";
+  CREATE_STAGE_LEVEL_RESET,
+  DELETE_STAGE_LEVEL_RESET,
+  UPDATE_STAGE_LEVEL_RESET,
+} from "../../../redux/constants/admin/stageLevelConstants";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import swal from "sweetalert";
+import Modal from "../../../components/Modal";
+import Input from "../../../components/Form/Input";
+import FormButton from "../../../components/Form/FormButton";
 
-const Configuration = () => {
+const StageLevel = () => {
   // helpers
   const dispatch = useDispatch();
   const toast = useToast();
 
   // states
-  const createTeam = useSelector((state) => state.createTeam);
-  const { loading, error, success } = createTeam;
-  const updateTeam = useSelector((state) => state.updateTeam);
-  const { loading: uLoading, error: uError, success: uSuccess } = updateTeam;
-  const deleteTeam = useSelector((state) => state.deleteTeam);
-  const { loading: dLoading, error: dError, success: dSuccess } = deleteTeam;
-  const getAllTeams = useSelector((state) => state.getAllTeams);
-  const { teams = [] } = getAllTeams;
+  const createStageLevel = useSelector((state) => state.createStageLevel);
+  const { loading, error, success } = createStageLevel;
+  const updateStageLevel = useSelector((state) => state.updateStageLevel);
+  const {
+    loading: uLoading,
+    error: uError,
+    success: uSuccess,
+  } = updateStageLevel;
+  const deleteStageLevel = useSelector((state) => state.deleteStageLevel);
+  const {
+    loading: dLoading,
+    error: dError,
+    success: dSuccess,
+  } = deleteStageLevel;
+  const getAllStageLevels = useSelector((state) => state.getAllStageLevels);
+  const { stages = [] } = getAllStageLevels;
 
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [teamName, setTeamName] = useState("");
+  const [stageLevelName, setStageLevelName] = useState("");
   const [id, setId] = useState(null);
-
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!teamName) {
+    if (!stageLevelName) {
       toast({
         title: "Warning!",
-        description: "Enter Team Name",
+        description: "Enter Stage Name",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(addTeam(teamName));
+      dispatch(addStageLevel(stageLevelName));
     }
   };
 
   const editHandler = (e) => {
     e.preventDefault();
-    if (!teamName) {
+    if (!stageLevelName) {
       toast({
         title: "Warning!",
-        description: "Enter Team Name",
+        description: "Enter Stage Name",
         status: "error",
         duration: 9000,
         isClosable: true,
       });
     } else {
-      dispatch(editTeam(teamName, id));
+      dispatch(editStageLevel(stageLevelName, id));
     }
   };
 
@@ -81,21 +88,21 @@ const Configuration = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: CREATE_TEAM_RESET });
+    dispatch({ type: CREATE_STAGE_LEVEL_RESET });
   }
 
   if (success) {
     toast({
       title: "Success",
-      description: "Create Team Success",
+      description: "Create Stage Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
-    dispatch(fetchTeams());
-    setTeamName("");
-    dispatch({ type: CREATE_TEAM_RESET });
+    dispatch(fetchStagesLevel());
+    setStageLevelName("");
+    dispatch({ type: CREATE_STAGE_LEVEL_RESET });
   }
 
   if (uError) {
@@ -106,22 +113,22 @@ const Configuration = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: UPDATE_TEAM_RESET });
+    dispatch({ type: UPDATE_STAGE_LEVEL_RESET });
   }
 
   if (uSuccess) {
     toast({
       title: "Success",
-      description: "Team Update Success",
+      description: "Stage Update Success",
       status: "success",
       duration: 9000,
       isClosable: true,
     });
     setIsOpen(false);
     setEdit(false);
-    dispatch(fetchTeams());
-    setTeamName("");
-    dispatch({ type: UPDATE_TEAM_RESET });
+    dispatch(fetchStagesLevel());
+    setStageLevelName("");
+    dispatch({ type: UPDATE_STAGE_LEVEL_RESET });
   }
 
   if (dError) {
@@ -132,7 +139,7 @@ const Configuration = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({ type: DELETE_TEAM_RESET });
+    dispatch({ type: DELETE_STAGE_LEVEL_RESET });
   }
 
   if (dSuccess) {
@@ -143,12 +150,12 @@ const Configuration = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch(fetchTeams());
-    dispatch({ type: DELETE_TEAM_RESET });
+    dispatch(fetchStagesLevel());
+    dispatch({ type: DELETE_STAGE_LEVEL_RESET });
   }
 
   useEffect(() => {
-    dispatch(fetchTeams());
+    dispatch(fetchStagesLevel());
   }, [dispatch]);
 
   const closeHandler = () => {
@@ -158,11 +165,11 @@ const Configuration = () => {
   const openHandler = () => {
     setIsOpen(true);
     setEdit(false);
-    setTeamName("");
+    setStageLevelName("");
   };
 
   const editTeamModal = (name, id) => {
-    setTeamName(name);
+    setStageLevelName(name);
     setId(id);
     setIsOpen(true);
     setEdit(true);
@@ -171,56 +178,49 @@ const Configuration = () => {
   const deleteHandler = (id) => {
     swal({
       title: "Are you sure?",
-      text: "Are you sure you want to delete this Team",
+      text: "Are you sure you want to delete this Stage",
       icon: "warning",
       dangerMode: true,
       buttons: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(removeTeam(id));
+        dispatch(removeStageLevel(id));
       }
     });
   };
-
   return (
-    <div className="configurationWrapper">
+    <div>
       <AdminSidebar />
       <DashboardHead title="Configuration Tab" />
-      <Suspense
-        fallback={
+
+      <div className="cardWrapper">
+        <Tabs />
+        <button onClick={openHandler}>Create Stage Type</button>
+
+        {dLoading ? (
           <Center>
             <CircularProgress isIndeterminate color="#FEA500" />
           </Center>
-        }
-      >
-        <div className="cardWrapper">
-          {/* <Tabs /> */}
-          <button onClick={openHandler}>Create Team</button>
-          {dLoading ? (
-            <Center>
-              <CircularProgress isIndeterminate color="#FEA500" />
-            </Center>
-          ) : (
-            <>
-              {teams.map((item, i) => (
-                <LinkCard
-                  borderRadius="15px"
-                  linkCardText={item.teamName}
-                  page="/"
-                  key={i}
-                  Edit={BiEdit}
-                  Delete={BiTrash}
-                  onEdit={() => editTeamModal(item.teamName, item.id)}
-                  onDelete={() => deleteHandler(item.id)}
-                />
-              ))}
-            </>
-          )}
-        </div>
+        ) : (
+          <>
+            {stages.map((item, i) => (
+              <LinkCard
+                borderRadius="15px"
+                linkCardText={item.stageLevelName}
+                page="/"
+                key={i}
+                Edit={BiEdit}
+                Delete={BiTrash}
+                onEdit={() => editTeamModal(item.stageLevelName, item.id)}
+                onDelete={() => deleteHandler(item.id)}
+              />
+            ))}
+          </>
+        )}
 
         <Modal
           isVisible={isOpen}
-          title={edit ? "Edit Team" : "Create Team"}
+          title={edit ? "Edit Stage" : "Create Stage"}
           size="lg"
           content={
             uLoading || loading ? (
@@ -233,22 +233,22 @@ const Configuration = () => {
                   img=""
                   type="text"
                   placeholder="Name"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
+                  value={stageLevelName}
+                  onChange={(e) => setStageLevelName(e.target.value)}
                 />
                 <FormButton
                   bgColor="#FEA500"
                   bxShadow="0px 4px 4px rgba(254, 165, 0, 0.43)"
-                  content={edit ? "Edit Team" : "Create Team"}
+                  content={edit ? "Edit Stage" : "Create Stage"}
                 />
               </form>
             )
           }
           onClose={closeHandler}
         />
-      </Suspense>
+      </div>
     </div>
   );
 };
 
-export default Configuration;
+export default StageLevel;

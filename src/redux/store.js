@@ -12,6 +12,9 @@ import {
 import {
   adminAuthReducer,
   adminMeReducer,
+  createAdminReducer,
+  getRolesReducer,
+  updateRolesReducer,
 } from "./reducers/admin/authReducers";
 import {
   createTicketReducer,
@@ -34,6 +37,33 @@ import {
   getStageReducer,
   updateStageReducer,
 } from "./reducers/admin/stageReducers";
+import {
+  createEStageReducer,
+  deleteEStageReducer,
+  getAllEStagesReducer,
+  getEStageReducer,
+  updateEStageReducer,
+} from "./reducers/admin/eStageReducers";
+import {
+  createPriorityReducer,
+  deletePriorityReducer,
+  getAllPrioritysReducer,
+  getPriorityReducer,
+  updatePriorityReducer,
+} from "./reducers/admin/priorityReducers";
+import {
+  createStageLevelReducer,
+  deleteStageLevelReducer,
+  getAllStagesLevelReducer,
+  getStageLevelReducer,
+  updateStageLevelReducer,
+} from "./reducers/admin/stageLevelReducers";
+import {
+  createTagReducer,
+  deleteTagReducer,
+  getTagReducer,
+  updateTagReducer,
+} from "./reducers/admin/tagReducers";
 
 const reducer = combineReducers({
   userLogin: authReducer,
@@ -59,6 +89,28 @@ const reducer = combineReducers({
   getStage: getStageReducer,
   deleteStage: deleteStageReducer,
   updateStage: updateStageReducer,
+  createEStage: createEStageReducer,
+  getAllEStages: getAllEStagesReducer,
+  getEStage: getEStageReducer,
+  deleteEStage: deleteEStageReducer,
+  updateEStage: updateEStageReducer,
+  createPriority: createPriorityReducer,
+  getAllPrioritys: getAllPrioritysReducer,
+  getPriority: getPriorityReducer,
+  deletePriority: deletePriorityReducer,
+  updatePriority: updatePriorityReducer,
+  createAdmin: createAdminReducer,
+  getRoles: getRolesReducer,
+  updateRoles: updateRolesReducer,
+  createStageLevel: createStageLevelReducer,
+  getAllStageLevels: getAllStagesLevelReducer,
+  getStageLevel: getStageLevelReducer,
+  deleteStageLevel: deleteStageLevelReducer,
+  updateStageLevel: updateStageLevelReducer,
+  createTag: createTagReducer,
+  getTags: getTagReducer,
+  deleteTag: deleteTagReducer,
+  updateTag: updateTagReducer,
 });
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))

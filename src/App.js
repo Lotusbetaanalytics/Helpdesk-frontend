@@ -18,10 +18,13 @@ import {
   AdminStageType,
   AdminStageTypeTwo,
   AdminPendingTickets,
-  Modal,
   ResetPassword,
   ForgotPassword,
   VerifyAccount,
+  Priority,
+  Tag,
+  EStages,
+  StageLevel,
 } from "./screens";
 
 function App() {
@@ -82,6 +85,11 @@ function App() {
             element={<AdminStages />}
           />
           <Route
+            path="/admin/configuration/stagelevel"
+            exact
+            element={<StageLevel />}
+          />
+          <Route
             path="/admin/configuration/sla/policies"
             exact
             element={<AdminSlaPolicies />}
@@ -101,7 +109,17 @@ function App() {
             exact
             element={<AdminPendingTickets />}
           />
-          <Route path="/modal" exact element={<Modal />} />
+          <Route
+            path="/admin/configuration/priority"
+            exact
+            element={<Priority />}
+          />
+          <Route path="/admin/configuration/tag" exact element={<Tag />} />
+          <Route
+            path="/admin/configuration/excludeStage"
+            exact
+            element={<EStages />}
+          />
         </Routes>
       </Router>
     </div>
